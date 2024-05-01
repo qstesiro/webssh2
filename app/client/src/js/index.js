@@ -20,7 +20,8 @@ var allowreplay = false
 var allowreauth = false
 var sessionLog, sessionFooter, logDate, currentDate, myFile, errorExists
 var socket, termid // eslint-disable-line
-const term = new Terminal()
+// const term = new Terminal()
+const term = new Terminal({fontFamily: 'Consolas', fontSize: 11, lineHeight: 1.12, letterSpacing: 0.5})
 // DOM properties
 var status = document.getElementById('status')
 var header = document.getElementById('header')
@@ -60,6 +61,7 @@ socket.on('connect', function () {
 })
 
 socket.on('setTerminalOpts', function (data) {
+  term.setOption('cursorStyle', 'bar')
   term.setOption('cursorBlink', data.cursorBlink)
   term.setOption('scrollback', data.scrollback)
   term.setOption('tabStopWidth', data.tabStopWidth)
