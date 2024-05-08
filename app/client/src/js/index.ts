@@ -38,7 +38,8 @@ let logDate: {
 let currentDate: Date;
 let myFile: string;
 let errorExists: boolean;
-const term = new Terminal();
+// const term = new Terminal();
+const term = new Terminal({fontFamily: 'Consolas', fontSize: 11, lineHeight: 1.12, letterSpacing: 1})
 // DOM properties
 const logBtn = document.getElementById('logBtn');
 const credentialsBtn = document.getElementById('credentialsBtn');
@@ -182,6 +183,7 @@ socket.on('connect', () => {
 socket.on(
   'setTerminalOpts',
   (data: { cursorBlink: any; scrollback: any; tabStopWidth: any; bellStyle: any }) => {
+    term.options.cursorStyle = 'block';
     term.options.cursorBlink = data.cursorBlink;
     term.options.scrollback = data.scrollback;
     term.options.tabStopWidth = data.tabStopWidth;
